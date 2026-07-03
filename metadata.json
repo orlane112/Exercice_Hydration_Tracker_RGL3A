@@ -1,0 +1,6 @@
+{
+  "name": "Suivi d'Hydratation Android",
+  "description": "Une application de suivi d'hydratation inspirée de Material 3 Android et Jetpack Compose avec cercle de progression de 2L, bouton +250ml et reset.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
