@@ -18,11 +18,14 @@ import {
   Zap, 
   ArrowRight,
   ShieldCheck,
-  FileCode
+  FileCode,
+  Download,
+  HelpCircle,
+  Wrench
 } from 'lucide-react';
 
 export default function App() {
-  const [activeLeftTab, setActiveLeftTab] = useState<'code' | 'rapport'>('code');
+  const [activeLeftTab, setActiveLeftTab] = useState<'code' | 'rapport' | 'exercice'>('code');
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col selection:bg-cyan-500/30 selection:text-cyan-300">
@@ -72,10 +75,10 @@ export default function App() {
             </div>
             
             {/* Custom Tab selector styled like a smartphone widget */}
-            <div className="flex bg-neutral-950 p-1.5 rounded-2xl border border-neutral-800/60 w-full sm:w-auto self-stretch sm:self-auto">
+            <div className="flex bg-neutral-950 p-1.5 rounded-2xl border border-neutral-800/60 w-full sm:w-auto self-stretch sm:self-auto gap-1">
               <button
                 onClick={() => setActiveLeftTab('code')}
-                className={`flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                className={`flex-1 sm:flex-none px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                   activeLeftTab === 'code'
                     ? 'bg-neutral-800 text-cyan-400 shadow-md'
                     : 'text-neutral-400 hover:text-neutral-200'
@@ -86,14 +89,25 @@ export default function App() {
               </button>
               <button
                 onClick={() => setActiveLeftTab('rapport')}
-                className={`flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                className={`flex-1 sm:flex-none px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                   activeLeftTab === 'rapport'
                     ? 'bg-neutral-800 text-cyan-400 shadow-md'
                     : 'text-neutral-400 hover:text-neutral-200'
                 }`}
               >
                 <BookOpen className="w-3.5 h-3.5" />
-                <span>Rapport d'Étude</span>
+                <span>Rapport & XML</span>
+              </button>
+              <button
+                onClick={() => setActiveLeftTab('exercice')}
+                className={`flex-1 sm:flex-none px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                  activeLeftTab === 'exercice'
+                    ? 'bg-neutral-800 text-cyan-400 shadow-md'
+                    : 'text-neutral-400 hover:text-neutral-200'
+                }`}
+              >
+                <Wrench className="w-3.5 h-3.5" />
+                <span>Exercice Local</span>
               </button>
             </div>
           </div>
@@ -144,7 +158,7 @@ export default function App() {
                 <ComposeCodeViewer />
               </div>
             </>
-          ) : (
+          ) : activeLeftTab === 'rapport' ? (
             /* Study Report Presentation */
             <div className="flex flex-col gap-6 overflow-y-auto pr-1">
               
@@ -336,6 +350,112 @@ export default function App() {
                     <h4 className="text-xs font-bold text-neutral-200 mt-1">Icônes Adaptatives Redimensionnables</h4>
                     <p className="text-[11px] text-neutral-400 mt-1">
                       Les icônes adaptatives modernes d'Android s'appuient sur un format vectoriel XML spécifique que le système d'exploitation sait afficher et animer de manière extrêmement fluide sur n'importe quelle taille d'écran.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          ) : (
+            /* Exercice Local & Setup Guide Presentation */
+            <div className="flex flex-col gap-6 overflow-y-auto pr-1">
+              
+              {/* Card 1: Télécharger le projet ZIP */}
+              <div className="bg-neutral-900/40 border border-neutral-900 rounded-3xl p-6 flex flex-col gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="p-1 rounded bg-cyan-950 text-cyan-400">
+                    <Download className="w-4 h-4" />
+                  </span>
+                  <h3 className="text-base font-bold text-neutral-100">Étape 1 : Télécharger le Projet</h3>
+                </div>
+                <p className="text-xs text-neutral-400 leading-relaxed">
+                  Pour récupérer les sources complètes de votre application native Android et l'exécuter sur votre PC :
+                </p>
+                <div className="bg-neutral-950/80 p-4 rounded-2xl border border-neutral-800/60 flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-5 h-5 rounded-full bg-cyan-950 text-cyan-400 flex items-center justify-center font-mono text-[10px] font-bold">1</span>
+                    <span className="text-xs font-bold text-neutral-200">Export ZIP</span>
+                  </div>
+                  <p className="text-[11px] text-neutral-400 pl-7">
+                    Cliquez sur l'icône de paramètres d'AI Studio en haut à droite, puis sélectionnez <strong className="text-cyan-400">"Export ZIP"</strong>. Extrayez l'archive téléchargée sur votre disque dur.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 2: Lancer dans Android Studio Meerkat */}
+              <div className="bg-neutral-900/40 border border-neutral-900 rounded-3xl p-6 flex flex-col gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="p-1 rounded bg-cyan-950 text-cyan-400">
+                    <Smartphone className="w-4 h-4" />
+                  </span>
+                  <h3 className="text-base font-bold text-neutral-100">Étape 2 : Importer dans Android Studio Meerkat</h3>
+                </div>
+                
+                <div className="space-y-3">
+                  <div className="p-4 bg-neutral-950/80 rounded-2xl border border-neutral-800/60 flex flex-col gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-5 h-5 rounded-full bg-cyan-950 text-cyan-400 flex items-center justify-center font-mono text-[10px] font-bold">2.1</span>
+                      <span className="text-xs font-bold text-neutral-200">Sélectionner le bon dossier racine</span>
+                    </div>
+                    <p className="text-[11px] text-neutral-400 pl-7">
+                      Dans Android Studio Meerkat, cliquez sur <strong className="text-cyan-400">Open</strong> et ciblez précisément le sous-dossier <code className="text-cyan-300 font-mono text-[10px] bg-neutral-900 px-1 py-0.5 rounded">/android</code> du projet extrait (le dossier qui contient les fichiers <code className="text-neutral-300 font-mono text-[10px]">settings.gradle.kts</code> et <code className="text-neutral-300 font-mono text-[10px]">build.gradle.kts</code>).
+                    </p>
+                  </div>
+
+                  <div className="p-4 bg-neutral-950/80 rounded-2xl border border-neutral-800/60 flex flex-col gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-5 h-5 rounded-full bg-cyan-950 text-cyan-400 flex items-center justify-center font-mono text-[10px] font-bold">2.2</span>
+                      <span className="text-xs font-bold text-neutral-200">Lancement de la Synchronisation Gradle</span>
+                    </div>
+                    <p className="text-[11px] text-neutral-400 pl-7">
+                      Android Studio va détecter les fichiers de configuration Gradle Kotlin DSL et démarrer automatiquement la synchronisation Gradle (<code className="text-cyan-300 font-mono text-[10px]">Gradle Sync</code>). Laissez l'IDE télécharger les dépendances nécessaires.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3: Corrections & Astuces de Fonctionnement */}
+              <div className="bg-neutral-900/40 border border-neutral-900 rounded-3xl p-6 flex flex-col gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="p-1 rounded bg-cyan-950 text-cyan-400">
+                    <Wrench className="w-4 h-4" />
+                  </span>
+                  <h3 className="text-base font-bold text-neutral-100">Étape 3 : Liste des Corrections & Ajustements Effectués</h3>
+                </div>
+                <p className="text-xs text-neutral-400 leading-relaxed">
+                  Pour garantir un fonctionnement immédiat sans erreur et respecter scrupuleusement les consignes de l'exercice :
+                </p>
+
+                <div className="space-y-3.5">
+                  <div className="p-3 bg-neutral-950/40 rounded-xl border border-neutral-800/40 flex flex-col gap-1">
+                    <span className="text-[10px] font-mono font-bold text-teal-400 uppercase">Correction 1 : Compatibilité API 21 (Lollipop)</span>
+                    <h4 className="text-xs font-bold text-neutral-200">Validation du SDK Minimum</h4>
+                    <p className="text-[11px] text-neutral-400 mt-0.5">
+                      Nous avons configuré le champ <code className="text-cyan-400 font-mono text-[10px]">minSdk = 21</code> dans le fichier <code className="text-neutral-300 font-mono text-[10px]">app/build.gradle.kts</code>. L'application est ainsi prête à fonctionner sur 99.5% des appareils Android en circulation (Android 5.0+).
+                    </p>
+                  </div>
+
+                  <div className="p-3 bg-neutral-950/40 rounded-xl border border-neutral-800/40 flex flex-col gap-1">
+                    <span className="text-[10px] font-mono font-bold text-teal-400 uppercase">Correction 2 : Nettoyage des Imports Jetpack Compose</span>
+                    <h4 className="text-xs font-bold text-neutral-200">Correction des Imports de Couleur Ambiguës</h4>
+                    <p className="text-[11px] text-neutral-400 mt-0.5">
+                      Dans <code className="text-neutral-300 font-mono text-[10px]">Theme.kt</code>, nous avons résolu un problème d'importation ambigu en qualifiant explicitement la classe <code className="text-cyan-400 font-mono text-[10px]">androidx.compose.ui.graphics.Color</code>. Cela évite tout conflit de type avec d'autres packages.
+                    </p>
+                  </div>
+
+                  <div className="p-3 bg-neutral-950/40 rounded-xl border border-neutral-800/40 flex flex-col gap-1">
+                    <span className="text-[10px] font-mono font-bold text-teal-400 uppercase">Correction 3 : Configuration du JDK requis</span>
+                    <h4 className="text-xs font-bold text-neutral-200">Sélection du JDK 17 ou supérieur</h4>
+                    <p className="text-[11px] text-neutral-400 mt-0.5">
+                      Le compilateur Jetpack Compose moderne (Kotlin 2.0.21) nécessite que le projet Gradle tourne sous <strong className="text-cyan-400">Java 17 (JDK 17) ou JDK 21</strong>. Configurez ce JDK dans Android Studio sous : <code className="text-neutral-300 font-mono text-[10px] bg-neutral-950 px-1 py-0.5 rounded">Settings &gt; Build &gt; Build Tools &gt; Gradle &gt; Gradle JDK</code>.
+                    </p>
+                  </div>
+
+                  <div className="p-3 bg-neutral-950/40 rounded-xl border border-neutral-800/40 flex flex-col gap-1">
+                    <span className="text-[10px] font-mono font-bold text-teal-400 uppercase">Correction 4 : Intégration Kotlin Compose Compiler</span>
+                    <h4 className="text-xs font-bold text-neutral-200">Éradication de l'ancienne dépendance obsolète</h4>
+                    <p className="text-[11px] text-neutral-400 mt-0.5">
+                      Nous avons migré vers le nouveau plugin de compilation Gradle natif de Google <code className="text-cyan-400 font-mono text-[10px]">kotlin-compose</code> introduit avec Kotlin 2.x, évitant les erreurs de désynchronisation de versions fréquentes entre Kotlin et Compose.
                     </p>
                   </div>
                 </div>
