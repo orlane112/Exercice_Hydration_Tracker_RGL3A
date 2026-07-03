@@ -17,7 +17,8 @@ import {
   User, 
   Zap, 
   ArrowRight,
-  ShieldCheck
+  ShieldCheck,
+  FileCode
 } from 'lucide-react';
 
 export default function App() {
@@ -289,6 +290,53 @@ export default function App() {
                         Vérifier systématiquement la cohérence des algorithmes, la gestion réactive et s'assurer que l'architecture répond à de hauts standards de qualité industriels.
                       </p>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 4: Pourquoi XML ? */}
+              <div className="bg-neutral-900/40 border border-neutral-900 rounded-3xl p-6 flex flex-col gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="p-1 rounded bg-cyan-950 text-cyan-400">
+                    <FileCode className="w-4 h-4" />
+                  </span>
+                  <h3 className="text-base font-bold text-neutral-100">Pourquoi XML reste indispensable en Jetpack Compose ?</h3>
+                </div>
+                <p className="text-xs text-neutral-400 leading-relaxed">
+                  Bien que Jetpack Compose remplace les layouts XML d'interface graphique, Android s'appuie toujours sur le XML pour configurer le système d'exploitation et les services bas niveau d'une application native.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                  <div className="p-3 bg-neutral-950/60 rounded-xl border border-neutral-800/40">
+                    <span className="text-[10px] font-mono font-bold text-cyan-400">1. AndroidManifest.xml</span>
+                    <h4 className="text-xs font-bold text-neutral-200 mt-1">Identité de l'App pour l'OS</h4>
+                    <p className="text-[11px] text-neutral-400 mt-1">
+                      Indique au système Android le nom de l'app, son icône, son point d'entrée unique (<code className="text-cyan-400 font-mono text-[10px]">MainActivity</code>) et ses permissions avant d'exécuter le moindre code Kotlin.
+                    </p>
+                  </div>
+
+                  <div className="p-3 bg-neutral-950/60 rounded-xl border border-neutral-800/40">
+                    <span className="text-[10px] font-mono font-bold text-cyan-400">2. themes.xml (Styles OS)</span>
+                    <h4 className="text-xs font-bold text-neutral-200 mt-1">Splash Screen & Écran de Démarrage</h4>
+                    <p className="text-[11px] text-neutral-400 mt-1">
+                      Configure la couleur de fond de la fenêtre et des barres d'état système au moment exact où l'utilisateur appuie sur l'icône, évitant tout écran blanc transitoire le temps que Compose démarre.
+                    </p>
+                  </div>
+
+                  <div className="p-3 bg-neutral-950/60 rounded-xl border border-neutral-800/40">
+                    <span className="text-[10px] font-mono font-bold text-cyan-400">3. backup_rules.xml</span>
+                    <h4 className="text-xs font-bold text-neutral-200 mt-1">Sécurité & Sauvegardes Cloud</h4>
+                    <p className="text-[11px] text-neutral-400 mt-1">
+                      Définit les fichiers locaux à sauvegarder sur Google Drive lors des transferts de téléphone. Les services de sauvegarde de l'OS lisent ce XML de façon asynchrone sans démarrer l'app.
+                    </p>
+                  </div>
+
+                  <div className="p-3 bg-neutral-950/60 rounded-xl border border-neutral-800/40">
+                    <span className="text-[10px] font-mono font-bold text-cyan-400">4. Vector Drawables (XML)</span>
+                    <h4 className="text-xs font-bold text-neutral-200 mt-1">Icônes Adaptatives Redimensionnables</h4>
+                    <p className="text-[11px] text-neutral-400 mt-1">
+                      Les icônes adaptatives modernes d'Android s'appuient sur un format vectoriel XML spécifique que le système d'exploitation sait afficher et animer de manière extrêmement fluide sur n'importe quelle taille d'écran.
+                    </p>
                   </div>
                 </div>
               </div>
