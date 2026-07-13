@@ -26,8 +26,8 @@ export function HydrationApp() {
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (percent / 100) * circumference;
 
-  const handleAddWater = () => {
-    addWater(250);
+  const handleAddWater = (amount: number = 250) => {
+    addWater(amount);
     setJustAdded(true);
     setTimeout(() => setJustAdded(false), 500);
   };
@@ -151,23 +151,33 @@ export function HydrationApp() {
         </div>
 
         {/* Buttons Control Panel */}
-        <div className="w-full grid grid-cols-2 gap-4 mt-2">
+        <div className="w-full grid grid-cols-3 gap-2.5 mt-2">
           
           {/* Main +250ml Action Button with Turquoise accents */}
           <motion.button
             whileTap={{ scale: 0.96 }}
-            onClick={handleAddWater}
-            className="h-14 bg-cyan-400 hover:bg-cyan-300 text-neutral-950 font-bold rounded-2xl flex items-center justify-center gap-2 transition-all cursor-pointer shadow-[0_4px_20px_-2px_rgba(6,182,212,0.4)] hover:shadow-[0_4px_25px_0px_rgba(6,182,212,0.6)]"
+            onClick={() => handleAddWater(250)}
+            className="h-14 bg-cyan-400 hover:bg-cyan-300 text-neutral-950 font-bold rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all cursor-pointer shadow-[0_4px_15px_-2px_rgba(6,182,212,0.4)] text-[11px]"
           >
-            <Plus className="w-5 h-5 stroke-[3]" />
+            <Plus className="w-4 h-4 stroke-[3]" />
             <span>+ 250 ml</span>
+          </motion.button>
+
+          {/* +500ml Action Button with Turquoise accents */}
+          <motion.button
+            whileTap={{ scale: 0.96 }}
+            onClick={() => handleAddWater(500)}
+            className="h-14 bg-cyan-400 hover:bg-cyan-300 text-neutral-950 font-bold rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all cursor-pointer shadow-[0_4px_15px_-2px_rgba(6,182,212,0.4)] text-[11px]"
+          >
+            <Plus className="w-4 h-4 stroke-[3]" />
+            <span>+ 500 ml</span>
           </motion.button>
 
           {/* Reset Action Button */}
           <motion.button
             whileTap={{ scale: 0.96 }}
             onClick={resetWater}
-            className="h-14 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-neutral-700 text-neutral-300 font-semibold rounded-2xl flex items-center justify-center gap-2 transition-all cursor-pointer"
+            className="h-14 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-neutral-700 text-neutral-300 font-semibold rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all cursor-pointer text-[11px]"
           >
             <RotateCcw className="w-4 h-4 text-neutral-400" />
             <span>Reset</span>

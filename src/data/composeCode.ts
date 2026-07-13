@@ -218,7 +218,7 @@ fun HydrationScreen(
             // Quick add actions
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 // Add 250ml action with Custom Turquoise Tint
                 Button(
@@ -230,11 +230,30 @@ fun HydrationScreen(
                     modifier = Modifier
                         .weight(1f)
                         .height(56.dp),
-                    shape = RoundedCornerShape(16.dp)
+                    shape = RoundedCornerShape(12.dp),
+                    contentPadding = PaddingValues(horizontal = 4.dp)
                 ) {
-                    Icon(Icons.Default.WaterDrop, contentDescription = null)
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("+ 250 ml", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    Icon(Icons.Default.WaterDrop, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text("+250 ml", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                }
+
+                // Add 500ml action with Custom Turquoise Tint
+                Button(
+                    onClick = { viewModel.addWater(500) },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary
+                    ),
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(56.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    contentPadding = PaddingValues(horizontal = 4.dp)
+                ) {
+                    Icon(Icons.Default.WaterDrop, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text("+500 ml", fontWeight = FontWeight.Bold, fontSize = 13.sp)
                 }
 
                 // Reset Action Button with Subtle design
@@ -247,11 +266,12 @@ fun HydrationScreen(
                     modifier = Modifier
                         .weight(1f)
                         .height(56.dp),
-                    shape = RoundedCornerShape(16.dp)
+                    shape = RoundedCornerShape(12.dp),
+                    contentPadding = PaddingValues(horizontal = 4.dp)
                 ) {
-                    Icon(Icons.Default.Refresh, contentDescription = null)
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Réinitialiser", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
+                    Icon(Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text("Réinit.", fontWeight = FontWeight.SemiBold, fontSize = 13.sp)
                 }
             }
 
